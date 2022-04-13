@@ -1,17 +1,28 @@
 package com.jenifera.registropeliculas.app.documents;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Document(collection = "peliculas")
 public class Pelicula {
 	
 	@Id
 	private String id;
+	
+	private String nombre;
 
 	private Date fechaEstreno;
 	
@@ -28,106 +39,20 @@ public class Pelicula {
 	private double puntuacion;
 	
 	@Valid
-	private Persona actores[];
+	private List<String> actores = new ArrayList<>();
 	
 	@Valid
-	private Persona directores[];
+	private List<String> directores = new ArrayList<>();
 	
 	@Valid
-	private Genero generos[];
+	private List<String> generos = new ArrayList<>();
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public Date getFechaEstreno() {
-		return fechaEstreno;
-	}
-
-	public void setFechaEstreno(Date fechaEstreno) {
-		this.fechaEstreno = fechaEstreno;
-	}
-
-	public String getDuracion() {
-		return duracion;
-	}
-
-	public void setDuracion(String duracion) {
-		this.duracion = duracion;
-	}
-
-	public String getClasificacion() {
-		return clasificacion;
-	}
-
-	public void setClasificacion(String clasificacion) {
-		this.clasificacion = clasificacion;
-	}
-
-	public double getPresupuesto() {
-		return presupuesto;
-	}
-
-	public void setPresupuesto(double presupuesto) {
-		this.presupuesto = presupuesto;
-	}
-
-	public double getDineroRecaudado() {
-		return dineroRecaudado;
-	}
-
-	public void setDineroRecaudado(double dineroRecaudado) {
-		this.dineroRecaudado = dineroRecaudado;
-	}
-
-	public double getUtilidades() {
-		return utilidades;
-	}
-
-	public void setUtilidades(double utilidades) {
-		this.utilidades = utilidades;
-	}
-
-	public double getPuntuacion() {
-		return puntuacion;
-	}
-
-	public void setPuntuacion(double puntuacion) {
-		this.puntuacion = puntuacion;
-	}
-
-	public Persona[] getActores() {
-		return actores;
-	}
-
-	public void setActores(Persona[] actores) {
-		this.actores = actores;
-	}
-
-	public Persona[] getDirectores() {
-		return directores;
-	}
-
-	public void setDirectores(Persona[] directores) {
-		this.directores = directores;
-	}
-
-	public Genero[] getGeneros() {
-		return generos;
-	}
-
-	public void setGeneros(Genero[] generos) {
-		this.generos = generos;
-	}
-
-	public Pelicula(Date fechaEstreno, String duracion, String clasificacion, double presupuesto,
-			double dineroRecaudado, double puntuacion, @Valid Persona[] actores, @Valid Persona[] directores,
-			@Valid Genero[] generos) {
+	
+	public Pelicula(String nombre, Date fechaEstreno, String duracion, String clasificacion, double presupuesto,
+			double dineroRecaudado, double puntuacion, @Valid List<String> actores, @Valid List<String> directores,
+			@Valid List<String> generos) {
 		
+		this.nombre=nombre;
 		this.fechaEstreno = fechaEstreno;
 		this.duracion = duracion;
 		this.clasificacion = clasificacion;
@@ -139,8 +64,6 @@ public class Pelicula {
 		this.generos = generos;
 	}
 
-	public Pelicula() {
-		
-	}
+	
 	
 }

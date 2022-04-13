@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection = "personas")
 public class Persona {
@@ -15,19 +16,21 @@ public class Persona {
 	
 	private String apellido;
 	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date fechaNac;
 	
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Date fechaFall;
 	
 	private Integer edad;
 	
-	private Double nacionalidad;
+	private String nacionalidad;
 	
 	private Double estatura;
 	
 	private String foto;
 	
-	private Boolean genero;
+	private String genero;
 	
 	private Date actualizacion;
 
@@ -37,6 +40,14 @@ public class Persona {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	public String getNombre() {
@@ -79,11 +90,11 @@ public class Persona {
 		this.edad = edad;
 	}
 
-	public Double getNacionalidad() {
+	public String getNacionalidad() {
 		return nacionalidad;
 	}
 
-	public void setNacionalidad(Double nacionalidad) {
+	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
 
@@ -103,14 +114,7 @@ public class Persona {
 		this.foto = foto;
 	}
 
-	public Boolean getGenero() {
-		return genero;
-	}
-
-	public void setGenero(Boolean genero) {
-		this.genero = genero;
-	}
-
+	
 	public Date getActualizacion() {
 		return actualizacion;
 	}
@@ -119,8 +123,8 @@ public class Persona {
 		this.actualizacion = actualizacion;
 	}
 
-	public Persona(String nombre, String apellido, Date fechaNac, Date fechaFall, Double nacionalidad, Double estatura,
-			String foto, Boolean genero) {
+	public Persona(String nombre, String apellido, Date fechaNac, Date fechaFall, String nacionalidad, Double estatura,
+			String foto, String genero) {
 	
 		this.nombre = nombre;
 		this.apellido = apellido;
